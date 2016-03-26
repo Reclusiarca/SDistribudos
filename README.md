@@ -1,0 +1,2 @@
+# SDistribudos
+Trabajo RMI 
