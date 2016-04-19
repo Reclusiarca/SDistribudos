@@ -1,0 +1,19 @@
+Servicios cliente
+-Menu dentro del cliente:
+ 1-ver pujas  (todas, imprime descripción “trucado”)
+
+
+ 2-pujar  ( Te devuelve el objeto) 
+1-puja más alta  (guardar )
+2-Espera una cantidad (Escriba su cantidad ) 
+3- Si introduce , la pasa al servidor y si es más alta que la actual la acepta 
+4- se pasa la nueva
+	
+ 3-salir
+
+Servidor 
+Crear lista con 5 Objetos y una puja minima ya iniciada 
+
+Main  (temporizador para para las pujas )
+Si pasa el temporizador, se devuelve la  puja más alta y se manda al ganador 
+Se pasa al siguiente objeto
