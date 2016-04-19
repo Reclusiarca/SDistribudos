@@ -1,5 +1,5 @@
+
 import java.rmi.*;
-import java.rmi.server.*;
 
 class ServidorSubasta  {
     static public void main (String args[]) {
@@ -11,8 +11,9 @@ class ServidorSubasta  {
             System.setSecurityManager(new RMISecurityManager());
         }
         try {
-            FabricaArticulosImpl srv = new FabricaArticulosImpl();	
-            Naming.rebind("rmi://localhost:" + args[0] + "/FabricaArticulo", srv);
+            ServicioSubastaImpl srv = new ServicioSubastaImpl();
+            Naming.rebind("rmi://localhost:" + args[0] + "/Subasta", srv);
+            
         }
         catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
