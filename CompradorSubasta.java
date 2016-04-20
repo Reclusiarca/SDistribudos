@@ -25,22 +25,50 @@ class CompradorSubasta {
             System.out.println("Introduzca 1 si desea ver los artículos en subasta");
             System.out.println("Introduzca 2 si desea pujar por un artículo");
             System.out.println("Introduzca 3 si desea salir");
-            Scanner ent = new Scanner(System.in);
+
             String apodo = args[2];
-            System.out.print(apodo + "> ");
-            while (ent.hasNextLine()) {
-            	if (ent.nextLine().compareTo("1")==0)
-            	{
-            		srv.ver_articulos(c,apodo);
-            	}
-            	else if(ent.nextLine().compareTo("2")==0)
-            	{
-            		System.out.println("2º Servicio");
-            	}
+try{
+            	InputStreamReader isr = new InputStreamReader(System.in);
+                BufferedReader br = new BufferedReader(isr);
+                String s; 
+                int i;
+                while ((s = br.readLine()) != null)
+                {
+                i = Integer.parseInt(s);
+                if (i==1)
+                {
+                	srv.ver_articulos(c,apodo);
+                }
+                else if (i==2)
+                {
+                	System.out.println("2º Servicio");
+			c.setEn_Subasta(1);
+                }
+                else if (i==3)
+                {
+                	System.out.println("Saliendo..");
+                	isr.close();
+                    srv.baja(c);
+                    System.exit(0);
+                }
+                else
+                {
+                	System.out.println("Opcion no valida");
+                }
+                }
+                isr.close();
+                srv.baja(c);
+                System.exit(0);
+                
+            }catch (IOException ioe) {
+                ioe.printStackTrace();
             }
-            srv.baja(c);
-            System.exit(0);
-            }
+catch(NumberFormatException nfe){
+                System.err.println("¡Formato invalido!");
+		System.err.println("Saliendo..");
+srv.baja(c);
+                System.exit(0);
+	}}
         catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
         }
