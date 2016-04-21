@@ -26,4 +26,8 @@ public void informa_compradores(String mensaje) throws RemoteException
 {
 System.out.println(mensaje);
 }
+public int getEstoy_subasta() throws RemoteException
+{
+return this.en_subasta;
+}
 }

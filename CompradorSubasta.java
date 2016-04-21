@@ -31,7 +31,9 @@ try{
             	InputStreamReader isr = new InputStreamReader(System.in);
                 BufferedReader br = new BufferedReader(isr);
                 String s; 
+		String s2;
                 int i;
+		int j;
                 while ((s = br.readLine()) != null)
                 {
                 i = Integer.parseInt(s);
@@ -41,9 +43,19 @@ try{
                 }
                 else if (i==2)
                 {
-                	System.out.println("2º Servicio");
 			c.setEn_Subasta(1);
-                }
+                	System.out.println("Bienvenido a la subasta, actualmente se está subastantando " + srv.get_articulosubasta()+" por una cantidad de "+srv.getpuja_mas_alta()+" si esta interesado introduzca una cantidad"+"\n");
+InputStreamReader isrr = new InputStreamReader(System.in);
+                BufferedReader brr = new BufferedReader(isrr);
+		while ((s2 = brr.readLine()) != null || s2!="salir")
+                {
+                j = Integer.parseInt(s2);
+         if (j<srv.getpuja_mas_alta())
+		System.out.println("Puja más baja que la actual, debe pujar superando "+srv.getpuja_mas_alta());
+else
+                	srv.comprar(c,j);
+			
+                }}
                 else if (i==3)
                 {
                 	System.out.println("Saliendo..");

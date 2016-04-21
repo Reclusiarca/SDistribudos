@@ -5,9 +5,10 @@ import java.util.List;
 class ServidorSubasta  {
     static public void main (String args[]) {
 	List<String> articulos_subasta;// Aqui almacenaremos los articulos que vamos a subastar
-	int i;//Variable para recorrer los artículos a subastar
+	int i=0;//Variable para recorrer los artículos a subastar
 	int index=0; //Indice del articulo que se está vendiendo en ese momento 
-       if (args.length!=1) {
+       	Object synchObj = new Object();
+if (args.length!=1) {
             System.err.println("Uso: ServidorSubasta numPuertoRegistro");
             return;
         }
@@ -18,12 +19,18 @@ class ServidorSubasta  {
             ServicioSubastaImpl srv = new ServicioSubastaImpl();
             Naming.rebind("rmi://localhost:" + args[0] + "/Subasta", srv);
 	    articulos_subasta= srv.que_vendemos(); //Ahora ya sabemos los articulos para iniciar la subasta
-	    i=articulos_subasta.size();		
-            while(i>0)
+
+            while(i<articulos_subasta.size())
             {
-		//Aqui llamamos al hilo subasta 
-            	i--;
-            } 		        
+		srv.comienza_subasta(i,30, 200);
+		while (srv.getIndex_ensubasta()!=(i+1))
+		{
+		synchObj.wait();
+				}
+		//Aqui llamamos al hilo subasta           	
+		i++;
+            }
+	System.out.println("Subasta finalizada, muchas gracias por participar");		        
 	}
         catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
