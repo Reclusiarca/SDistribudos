@@ -27,6 +27,15 @@ int puja_mas_alta; //La puja mas alta que se ha dado
     public void baja(Comprador c) throws RemoteException {
 	l.remove(l.indexOf(c));
     }
+ //Metodo que se ejecutara antes de finalizar la subasta para dar de baja a todos los usuarios
+    public void bajatodos() throws RemoteException {
+	l.clear();
+    }
+    //metodo para que el servidor no se cierre hasta que todos los usuarios se marchen
+    public boolean finalizar() throws RemoteException {
+	return l.isEmpty();
+    }
+
     //Metodo que se ejecutara cuando el comprador desee ver los articulos en subasta
     //Argumentos: Comprador que desea ver los articulos y el apodo del mismo	
     public void ver_articulos(Comprador c, String apodo)
@@ -95,7 +104,14 @@ while(segundos_finalizar_venta!=0)
     Thread.currentThread().interrupt();
 }
 }
+// Comprabacion para saber si alguien ha pujado y segun el if avisa o no de la ultima puja y empieza la siguiente
+if( ultima_puja == 200 )
+    {
+	System.out.println("¡ Nadie ha pujado por este articulo !"); 
+    }
+else{
 System.out.println("¡"+articulos.get(indexarti)+" adjudicado por " + ultima_puja + "euros!"); 
+}
 setIndex_ensubasta(indexarti+1); //Actualizamos la variable para pasar al siguiente articulo
 return 0;
     }

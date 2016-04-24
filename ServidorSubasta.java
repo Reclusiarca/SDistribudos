@@ -30,7 +30,13 @@ if (args.length!=1) {
 		//Aqui llamamos al hilo subasta           	
 		i++;
             }
-	System.out.println("Subasta finalizada, muchas gracias por participar");		        
+	System.out.println("Subasta finalizada, muchas gracias por participar");
+
+	while(srv.finalizar()==false){
+	}
+	System.exit(1);
+
+
 	}
         catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());

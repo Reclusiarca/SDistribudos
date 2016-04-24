@@ -25,6 +25,7 @@ class CompradorSubasta {
             System.out.println("Introduzca 1 si desea ver los artículos en subasta");
             System.out.println("Introduzca 2 si desea pujar por un artículo");
             System.out.println("Introduzca 3 si desea salir");
+	    System.out.println("Si la subasta ha finalizado escriba una palabra");
 
             String apodo = args[2];
 try{
@@ -48,8 +49,8 @@ try{
 InputStreamReader isrr = new InputStreamReader(System.in);
                 BufferedReader brr = new BufferedReader(isrr);
 		while ((s2 = brr.readLine()) != null || s2!="salir")
-                {
-                j = Integer.parseInt(s2);
+                {		  
+	    j = Integer.parseInt(s2);
          if (j<srv.getpuja_mas_alta())
 		System.out.println("Puja más baja que la actual, debe pujar superando "+srv.getpuja_mas_alta());
 else
@@ -59,13 +60,14 @@ else
                 else if (i==3)
                 {
                 	System.out.println("Saliendo..");
-                	isr.close();
+			isr.close();
                     srv.baja(c);
                     System.exit(0);
                 }
                 else
                 {
                 	System.out.println("Opcion no valida");
+			srv.ver_articulos(c,apodo);
                 }
                 }
                 isr.close();
@@ -75,12 +77,12 @@ else
             }catch (IOException ioe) {
                 ioe.printStackTrace();
             }
-catch(NumberFormatException nfe){
-                System.err.println("¡Formato invalido!");
-		System.err.println("Saliendo..");
-srv.baja(c);
-                System.exit(0);
-	}}
+catch (NumberFormatException nfe)
+{
+                System.err.println("Saliendo de la subasta...");
+		srv.baja(c);
+		System.exit(0);
+		}}
         catch (RemoteException e) {
             System.err.println("Error de comunicacion: " + e.toString());
         }
