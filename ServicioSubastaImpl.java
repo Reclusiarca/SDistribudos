@@ -29,10 +29,16 @@ int puja_mas_alta; //La puja mas alta que se ha dado
     }
  //Metodo que se ejecutara antes de finalizar la subasta para dar de baja a todos los usuarios
     public void bajatodos() throws RemoteException {
-	l.clear();
+	int tam=l.size();
+	for (int aux=0 ; aux < tam;aux++)
+	    {
+	Comprador c = l.get(aux);
+	c.informa_compradores_salida();
+	}
     }
     //metodo para que el servidor no se cierre hasta que todos los usuarios se marchen
     public boolean finalizar() throws RemoteException {
+
 	return l.isEmpty();
     }
 

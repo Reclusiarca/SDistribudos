@@ -30,4 +30,11 @@ public int getEstoy_subasta() throws RemoteException
 {
 return this.en_subasta;
 }
+
+
+public void informa_compradores_salida() throws RemoteException
+{
+    //metodo que avisa al comprador de que la subasta ha acabado
+System.out.println("¡ SUBASTA ACABADA, introduce una letra para salir !");
+}
 }

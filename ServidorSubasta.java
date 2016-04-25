@@ -31,7 +31,9 @@ if (args.length!=1) {
 		i++;
             }
 	System.out.println("Subasta finalizada, muchas gracias por participar");
-
+	System.out.println("Esperando que todos los usuarios se marchen");
+	//añadir aqui forma de acceder a srv.c y avisar a los usuarios 
+	srv.bajatodos();
 	while(srv.finalizar()==false){
 	}
 	System.exit(1);
